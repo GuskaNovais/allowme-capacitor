@@ -11,10 +11,12 @@ public class AllowMeCapacitor: NSObject {
         }
 
         allowMe = AllowMe(apiKey: apiKey)
-        allowMe?.setup(success: {
-            completion(.success(()))
-        }, failure: { error in
-            completion(.failure(error))
+        allowMe?.setup(completion: { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
         })
     }
 
@@ -24,10 +26,10 @@ public class AllowMeCapacitor: NSObject {
             return
         }
 
-        allowMe.collect(success: { data in
+        allowMe.collect(onSuccess: { data in
             completion(.success(data))
-        }, failure: { error in
-            completion(.failure(error))
+        }, onError: { error in
+            completion(.failure(error ?? NSError(domain: "AllowMeCapacitor", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error from collect"])))
         })
     }
 }
