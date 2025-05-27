@@ -1,4 +1,4 @@
-export interface AllowMeCapacitorPlugin{
-  initialize(options: { apiKey: string }): Promise<void>;
+export interface AllowMeCapacitorPlugin {
+  initialize(options: { apiKey: string }, environment: 'hml'): Promise<void>;
   collect(): Promise<{ data: string }>;
 }

@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
 
   
   s.dependency 'AllowMeSDK', '~> 3.3.2'
+  s.dependency 'AllowMeSDKHomolog', '~> 3.3.2'
   s.source       = { :git => package['repository']['url'], :tag => s.version.to_s }
 
   s.swift_version = '5.1'
