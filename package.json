@@ -1,6 +1,6 @@
 {
   "name": "allowme-capacitor",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Plugin Capacitor para integrar o SDK nativo da AllowMe em apps Ionic/Capacitor.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
