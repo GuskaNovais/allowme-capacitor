@@ -1,3 +1,4 @@
-export interface AllowMeCapacitorPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+export interface AllowMeCapacitorPlugin{
+  initialize(options: { apiKey: string }): Promise<void>;
+  collect(): Promise<{ data: string }>;
 }

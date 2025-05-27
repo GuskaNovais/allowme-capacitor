@@ -3,8 +3,12 @@ import { WebPlugin } from '@capacitor/core';
 import type { AllowMeCapacitorPlugin } from './definitions';
 
 export class AllowMeCapacitorWeb extends WebPlugin implements AllowMeCapacitorPlugin {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  async initialize(options: { apiKey: string }): Promise<void> {
+    console.log('AllowMe Web: initialize with', options.apiKey);
+  }
+
+  async collect(): Promise<{ data: string }> {
+    console.log('AllowMe Web: collect');
+    return { data: 'web-collection-result' };
   }
 }

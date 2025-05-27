@@ -37,16 +37,26 @@ android {
         abortOnError false
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
 repositories {
     google()
     mavenCentral()
+    jcenter() 
+    maven {
+        url "https://android.allowmecloud.com/sdk"
+        authentication {
+            basic(BasicAuthentication)
+        }
+        credentials {
+            username 'green'
+            password 'tilt grew dope ruin kept come'
+        }
+    }
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,4 +65,8 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+
+    // Dependências do SDK AllowMe
+    implementation 'br.com.allowme.android:allowme-sdk:3.4.6-stage'
+    releaseImplementation 'br.com.allowme.android:allowme-sdk:3.4.6'
 }

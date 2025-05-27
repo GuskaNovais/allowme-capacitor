@@ -11,9 +11,37 @@ npx cap sync
 
 ## API
 
-<docgen-index></docgen-index>
+<docgen-index>
+
+* [`initialize(...)`](#initialize)
+* [`collect()`](#collect)
+
+</docgen-index>
 
 <docgen-api>
-<!-- run docgen to generate docs from the source -->
-<!-- More info: https://github.com/ionic-team/capacitor-docgen -->
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### initialize(...)
+
+```typescript
+initialize(options: { apiKey: string; }) => Promise<void>
+```
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ apiKey: string; }</code> |
+
+--------------------
+
+
+### collect()
+
+```typescript
+collect() => Promise<{ data: string; }>
+```
+
+**Returns:** <code>Promise&lt;{ data: string; }&gt;</code>
+
+--------------------
+
 </docgen-api>
