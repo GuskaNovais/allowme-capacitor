@@ -1,9 +1,10 @@
 import Foundation
+import AllowMeSDK
 
-@objc public class AllowMeCapacitor: NSObject {
+public class AllowMeCapacitor: NSObject {
     private var allowMe: AllowMe?
 
-    @objc public func initialize(apiKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func initialize(apiKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
         guard allowMe == nil else {
             completion(.success(()))
             return
@@ -17,7 +18,7 @@ import Foundation
         })
     }
 
-    @objc public func collect(completion: @escaping (Result<String, Error>) -> Void) {
+    public func collect(completion: @escaping (Result<String, Error>) -> Void) {
         guard let allowMe = allowMe else {
             completion(.failure(NSError(domain: "AllowMeCapacitor", code: 0, userInfo: [NSLocalizedDescriptionKey: "SDK not initialized"])))
             return
