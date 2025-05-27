@@ -9,12 +9,19 @@ npm install allowme-capacitor
 npx cap sync
 ```
 
+## IOS/APP
+
+```bash
+source 'https://git-codecommit.us-east-1.amazonaws.com/v1/repos/allowme_Spec'
+source 'https://github.com/CocoaPods/Specs.git'
+```
+
 ## API
 
 <docgen-index>
 
-* [`initialize(...)`](#initialize)
-* [`collect()`](#collect)
+- [`initialize(...)`](#initialize)
+- [`collect()`](#collect)
 
 </docgen-index>
 
@@ -31,8 +38,7 @@ initialize(options: { apiKey: string; }) => Promise<void>
 | ------------- | -------------------------------- |
 | **`options`** | <code>{ apiKey: string; }</code> |
 
---------------------
-
+---
 
 ### collect()
 
@@ -42,6 +48,6 @@ collect() => Promise<{ data: string; }>
 
 **Returns:** <code>Promise&lt;{ data: string; }&gt;</code>
 
---------------------
+---
 
 </docgen-api>
