@@ -14,17 +14,22 @@ public class AllowMeCapacitor: NSObject {
 
         useHomolog = environment.lowercased() == "hml"
 
-        do {
-            allowMe = try (useHomolog
-                ? AllowMeSDKHomolog.AllowMe.getInstance(withApiKey: apiKey)
-                : AllowMeSDK.AllowMe.getInstance(withApiKey: apiKey)
-            )
-        } catch {
-            completion(.failure(error))
+        let instance = useHomolog
+            ? AllowMeSDKHomolog.AllowMe.getInstance(withApiKey: apiKey)
+            : AllowMeSDK.AllowMe.getInstance(withApiKey: apiKey)
+
+        guard let typedInstance = instance as? AllowMeSDK.AllowMe else {
+            completion(.failure(NSError(
+                domain: "AllowMeCapacitor",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Invalid SDK instance type"]
+            )))
             return
         }
 
-        allowMe?.setup(completion: { error in
+        self.allowMe = typedInstance
+
+        typedInstance.setup(completion: { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -32,7 +37,7 @@ public class AllowMeCapacitor: NSObject {
             }
         })
     }
-    
+
     public func collect(completion: @escaping (Result<String, Error>) -> Void) {
         guard let allowMe = allowMe else {
             completion(.failure(NSError(
