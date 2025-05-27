@@ -20,8 +20,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 <docgen-index>
 
-- [`initialize(...)`](#initialize)
-- [`collect()`](#collect)
+* [`initialize(...)`](#initialize)
+* [`collect()`](#collect)
 
 </docgen-index>
 
@@ -38,7 +38,8 @@ initialize(options: { apiKey: string; }) => Promise<void>
 | ------------- | -------------------------------- |
 | **`options`** | <code>{ apiKey: string; }</code> |
 
----
+--------------------
+
 
 ### collect()
 
@@ -48,6 +49,6 @@ collect() => Promise<{ data: string; }>
 
 **Returns:** <code>Promise&lt;{ data: string; }&gt;</code>
 
----
+--------------------
 
 </docgen-api>

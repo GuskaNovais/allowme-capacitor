@@ -1,5 +1,6 @@
 import Foundation
 import Capacitor
+import AllowMeSDK
 
 @objc(AllowMeCapacitorPlugin)
 public class AllowMeCapacitorPlugin: CAPPlugin, CAPBridgedPlugin {
