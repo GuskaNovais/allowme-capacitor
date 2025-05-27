@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   s.dependency 'Capacitor'
 
   
-  s.dependency 'AllowMeSDK', '~> 2.2.5'
-
+  s.dependency 'AllowMeSDK', '~> 3.3.2'
+  s.source = { :git => 'https://git-codecommit.us-east-1.amazonaws.com/v1/repos/allowme_Spec', :tag => s.version.to_s }
 
   s.swift_version = '5.1'
 end
