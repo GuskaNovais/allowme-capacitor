@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.dependency 'Capacitor'
 
   
-  s.dependency 'AllowMeSDK', '~> 3.3.2'
+  s.dependency 'AllowMeSDK', '~> 2.2.5'
 
 
   s.swift_version = '5.1'
