@@ -5,18 +5,20 @@ import AllowMeSDKHomolog
 public class AllowMeCapacitor: NSObject {
     private var allowMe: AllowMeSDK.AllowMe? // evitar ambiguidade
     private var useHomolog: Bool = false
+    
+public func initialize(apiKey: String, environment: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    guard allowMe == nil else {
+        completion(.success(()))
+        return
+    }
 
-    public func initialize(apiKey: String, environment: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard allowMe == nil else {
-            completion(.success(()))
-            return
-        }
+    useHomolog = environment.lowercased() == "hml"
 
-        useHomolog = environment.lowercased() == "hml"
-
-        let instance = useHomolog
+    do {
+        let instance = try (useHomolog
             ? AllowMeSDKHomolog.AllowMe.getInstance(withApiKey: apiKey)
             : AllowMeSDK.AllowMe.getInstance(withApiKey: apiKey)
+        )
 
         guard let typedInstance = instance as? AllowMeSDK.AllowMe else {
             completion(.failure(NSError(
@@ -29,14 +31,17 @@ public class AllowMeCapacitor: NSObject {
 
         self.allowMe = typedInstance
 
-        typedInstance.setup(completion: { error in
+        typedInstance.setup { error in
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(()))
             }
-        })
+        }
+    } catch {
+        completion(.failure(error))
     }
+}
 
     public func collect(completion: @escaping (Result<String, Error>) -> Void) {
         guard let allowMe = allowMe else {
