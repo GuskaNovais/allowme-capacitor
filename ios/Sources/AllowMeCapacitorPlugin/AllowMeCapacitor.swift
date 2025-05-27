@@ -10,7 +10,13 @@ public class AllowMeCapacitor: NSObject {
             return
         }
 
-        allowMe = AllowMe(apiKey: apiKey)
+        do {
+            allowMe = try AllowMe.getInstance(withApiKey: apiKey)
+        } catch {
+            completion(.failure(error))
+            return
+        }
+
         allowMe?.setup(completion: { error in
             if let error = error {
                 completion(.failure(error))
@@ -22,14 +28,25 @@ public class AllowMeCapacitor: NSObject {
 
     public func collect(completion: @escaping (Result<String, Error>) -> Void) {
         guard let allowMe = allowMe else {
-            completion(.failure(NSError(domain: "AllowMeCapacitor", code: 0, userInfo: [NSLocalizedDescriptionKey: "SDK not initialized"])))
+            completion(.failure(NSError(
+                domain: "AllowMeCapacitor",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "SDK not initialized"]
+            )))
             return
         }
 
-        allowMe.collect(onSuccess: { data in
-            completion(.success(data))
-        }, onError: { error in
-            completion(.failure(error ?? NSError(domain: "AllowMeCapacitor", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error from collect"])))
-        })
+        allowMe.collect(
+            onSuccess: { data in
+                completion(.success(data))
+            },
+            onError: { error in
+                completion(.failure(error ?? NSError(
+                    domain: "AllowMeCapacitor",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Unknown error from collect"]
+                )))
+            }
+        )
     }
 }
