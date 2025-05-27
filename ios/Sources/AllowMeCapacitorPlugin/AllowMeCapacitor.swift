@@ -3,7 +3,7 @@ import AllowMeSDK
 import AllowMeSDKHomolog
 
 public class AllowMeCapacitor: NSObject {
-    private var allowMe: AllowMe?
+    private var allowMe: AllowMeSDK.AllowMe? // evitar ambiguidade
     private var useHomolog: Bool = false
 
     public func initialize(apiKey: String, environment: String, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -15,8 +15,10 @@ public class AllowMeCapacitor: NSObject {
         useHomolog = environment.lowercased() == "hml"
 
         do {
-            allowMe = try (useHomolog ? AllowMeSDKHomolog.getInstance(withApiKey: apiKey)
-                                      : AllowMeSDK.getInstance(withApiKey: apiKey))
+            allowMe = try (useHomolog
+                ? AllowMeSDKHomolog.AllowMe.getInstance(withApiKey: apiKey)
+                : AllowMeSDK.AllowMe.getInstance(withApiKey: apiKey)
+            )
         } catch {
             completion(.failure(error))
             return
