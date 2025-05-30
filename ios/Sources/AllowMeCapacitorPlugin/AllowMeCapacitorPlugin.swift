@@ -20,7 +20,6 @@ public class AllowMeCapacitorPlugin: CAPPlugin, CAPBridgedPlugin {
             return
         }
 
-        // Lê o valor do ambiente passado ('hml' ou 'prod')
         let environment = call.getString("environment") ?? "prod"
 
         implementation.initialize(apiKey: apiKey, environment: environment) { result in
