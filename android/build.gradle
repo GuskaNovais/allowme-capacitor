@@ -5,25 +5,6 @@ ext {
     androidxEspressoCoreVersion = project.hasProperty('androidxEspressoCoreVersion') ? rootProject.ext.androidxEspressoCoreVersion : '3.6.1'
 }
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://android.allowmecloud.com/sdk"
-            credentials {
-                username 'green'
-                password 'lama pits bogs drip seer odor'
-            }
-            authentication {
-                basic(BasicAuthentication)
-            }
-        }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.2'
-    }
-}
 
 apply plugin: 'com.android.library'
 
@@ -56,20 +37,22 @@ android {
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-    maven {
-        url "https://android.allowmecloud.com/sdk"
-        credentials {
-            username 'green'
-            password 'lama pits bogs drip seer odor'
-        }
-        authentication {
-            basic(BasicAuthentication)
+    allprojects {
+        repositories {
+            jcenter()
+            maven {
+                url "https://maven.google.com"
+                    authentication {
+                        basic(BasicAuthentication)
+                    }
+            credentials {
+                username 'green'
+                password 'lama pits bogs drip seer odor'
+                }
+            url "https://android.allowmecloud.com/sdk"
+            }
         }
     }
-}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -81,6 +64,6 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
 
     // AllowMe SDK
-    debugImplementation 'br.com.allowme.android:allowme-sdk:3.4.6-stage'
-    releaseImplementation 'br.com.allowme.android:allowme-sdk:3.4.6'
+    debugImplementation "br.com.allowme.android:allowme-sdk:3.4.6-stage"
+    releaseImplementation "br.com.allowme.android:allowme-sdk:3.4.6"
 }
