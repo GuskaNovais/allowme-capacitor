@@ -1,2 +1,17 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://android.allowmecloud.com/sdk")
+            credentials {
+                username = "green"
+                password = "lama pits bogs drip seer odor"
+            }
+        }
+    }
+}
+
 include ':capacitor-android'
 project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
