@@ -9,6 +9,16 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://android.allowmecloud.com/sdk"
+            credentials {
+                username 'green'
+                password 'lama pits bogs drip seer odor'
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.7.2'
@@ -18,7 +28,7 @@ buildscript {
 apply plugin: 'com.android.library'
 
 android {
-    namespace "com.mycompany.plugins.example"
+    namespace "com.mycompany.plugins.allowme"
     compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 35
 
     defaultConfig {
@@ -43,6 +53,21 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+    maven {
+        url "https://android.allowmecloud.com/sdk"
+        credentials {
+            username 'green'
+            password 'lama pits bogs drip seer odor'
+        }
+        authentication {
+            basic(BasicAuthentication)
+        }
     }
 }
 
