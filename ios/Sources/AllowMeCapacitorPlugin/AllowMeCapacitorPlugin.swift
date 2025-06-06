@@ -20,9 +20,7 @@ public class AllowMeCapacitorPlugin: CAPPlugin, CAPBridgedPlugin {
             return
         }
 
-        let environment = call.getString("environment") ?? "prod"
-
-        implementation.initialize(apiKey: apiKey, environment: environment) { result in
+        implementation.initialize(apiKey: apiKey) { result in
             switch result {
             case .success():
                 call.resolve()

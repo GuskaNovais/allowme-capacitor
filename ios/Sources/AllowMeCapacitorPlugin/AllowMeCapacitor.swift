@@ -1,51 +1,33 @@
 import Foundation
-import AllowMeSDK
+#if DEBUG
 import AllowMeSDKHomolog
+#else
+import AllowMeSDK
+#endif
 
 public class AllowMeCapacitor: NSObject {
-    private var allowMe: AllowMeSDK.AllowMe? // evitar ambiguidade
-    private var useHomolog: Bool = false
+    private var allowMe: AllowMe?
+    
+public func initialize(apiKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    guard allowMe == nil else {
+        completion(.success(()))
+        return
+    } 
 
-    public func initialize(apiKey: String, environment: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard allowMe == nil else {
-            completion(.success(()))
-            return
-        }
+    do {
+        self.allowMe = try AllowMe.getInstance(withApiKey: apiKey)
 
-        useHomolog = environment.lowercased() == "hml"
-
-        do {
-            let instance = try (useHomolog
-                ? AllowMeSDKHomolog.AllowMe.getInstance(withApiKey: apiKey)
-                : AllowMeSDK.AllowMe.getInstance(withApiKey: apiKey)
-            )
-
-            guard let typedInstance = instance as? AllowMeSDK.AllowMe else {
-                completion(.failure(NSError(
-                    domain: "AllowMeCapacitor",
-                    code: -1,
-                    userInfo: [NSLocalizedDescriptionKey: "Invalid SDK instance type"]
-                )))
-                return
+        self.allowMe?.setup { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
             }
-
-            self.allowMe = typedInstance
-
-            typedInstance.setup { error in
-                if let error = error {
-                    completion(.failure(error))
-                } else {
-                    if let startError = typedInstance.start() {
-                        completion(.failure(startError))
-                    } else {
-                        completion(.success(()))
-                    }
-                }
-            }
-        } catch {
-            completion(.failure(error))
         }
+    } catch {
+        completion(.failure(error))
     }
+}
 
     public func collect(completion: @escaping (Result<String, Error>) -> Void) {
         guard let allowMe = allowMe else {

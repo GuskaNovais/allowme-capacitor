@@ -3,7 +3,7 @@ import { WebPlugin } from '@capacitor/core';
 import type { AllowMeCapacitorPlugin } from './definitions';
 
 export class AllowMeCapacitorWeb extends WebPlugin implements AllowMeCapacitorPlugin {
-  async initialize(options: { apiKey: string; environment: 'hml' | 'prod' }): Promise<void> {
+  async initialize(options: { apiKey: string }): Promise<void> {
     console.log('AllowMe Web: initialize with', options.apiKey);
   }
 
