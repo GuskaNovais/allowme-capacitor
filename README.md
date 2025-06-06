@@ -31,13 +31,12 @@ source 'https://github.com/CocoaPods/Specs.git'
 ### initialize(...)
 
 ```typescript
-initialize(options: { apiKey: string; }, environment: 'hml' | 'prod') => Promise<void>
+initialize(options: { apiKey: string; }) => Promise<void>
 ```
 
-| Param             | Type                             |
-| ----------------- | -------------------------------- |
-| **`options`**     | <code>{ apiKey: string; }</code> |
-| **`environment`** | <code>'hml' \| 'prod'</code>     |
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ apiKey: string; }</code> |
 
 --------------------
 
