@@ -42,6 +42,22 @@ android {
     }
 }
 
+repositories {
+    google()
+    mavenCentral()
+    jcenter() 
+    maven {
+        url "https://android.allowmecloud.com/sdk"
+        authentication {
+            basic(BasicAuthentication)
+        }
+        credentials {
+            username 'green'
+            password 'lama pits bogs drip seer odor'
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
