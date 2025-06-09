@@ -16,12 +16,34 @@ source 'https://git-codecommit.us-east-1.amazonaws.com/v1/repos/allowme_Spec'
 source 'https://github.com/CocoaPods/Specs.git'
 ```
 
+## ANDROID/APP
+
+in build.gradle
+
+```bash
+repositories {
+    google()
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://android.allowmecloud.com/sdk"
+        authentication {
+            basic(BasicAuthentication)
+        }
+        credentials {
+            username 'SEU_USERNAME_AQUI'
+            password 'SEU_PASSWORD_AQUI'
+        }
+    }
+}
+```
+
 ## API
 
 <docgen-index>
 
-* [`initialize(...)`](#initialize)
-* [`collect()`](#collect)
+- [`initialize(...)`](#initialize)
+- [`collect()`](#collect)
 
 </docgen-index>
 
@@ -38,8 +60,7 @@ initialize(options: { apiKey: string; }) => Promise<void>
 | ------------- | -------------------------------- |
 | **`options`** | <code>{ apiKey: string; }</code> |
 
---------------------
-
+---
 
 ### collect()
 
@@ -49,6 +70,6 @@ collect() => Promise<{ data: string; }>
 
 **Returns:** <code>Promise&lt;{ data: string; }&gt;</code>
 
---------------------
+---
 
 </docgen-api>
