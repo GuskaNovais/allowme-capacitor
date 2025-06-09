@@ -42,6 +42,21 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://android.allowmecloud.com/sdk"
+        credentials {
+            username = rootProject.findProperty("ALLOWME_USERNAME") ?: ""
+            password = rootProject.findProperty("ALLOWME_PASSWORD") ?: ""
+        }
+        println "AllowMe USERNAME: ${rootProject.findProperty("ALLOWME_USERNAME")}"
+println "AllowMe PASSWORD: ${rootProject.findProperty("ALLOWME_PASSWORD")}"
+        authentication {
+            basic(BasicAuthentication)
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
