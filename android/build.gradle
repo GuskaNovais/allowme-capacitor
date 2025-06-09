@@ -52,8 +52,8 @@ repositories {
             basic(BasicAuthentication)
         }
         credentials {
-            username 'green'
-            password 'lama pits bogs drip seer odor'
+        username = rootProject.findProperty("ALLOWME_USERNAME") ?: ""
+        password = rootProject.findProperty("ALLOWME_PASSWORD") ?: ""
         }
     }
 }
